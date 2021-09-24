@@ -16,3 +16,7 @@ class QuoteModel():
     def __str__(self):
         """Overwrite the str method for more helpful printing."""
         return f'A quotation by {self.author} that says "{self.body}"'
+
+    def __repr__(self):
+        """Overwrite how the object is represented to show the contents."""
+        return f'<{self.author}, {self.body}>'
