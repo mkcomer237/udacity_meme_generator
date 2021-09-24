@@ -21,8 +21,8 @@ class IngestorInterface():
         """Check that the file extension is in the allow list."""
         return path.split('.')[-1] in cls.allowed_extensions
 
-    @abstractmethod
     @classmethod
-    def parse_quotes(cls, path: str) -> List(QuoteModel):
+    @abstractmethod
+    def parse_quotes(cls, path: str) -> List[QuoteModel]:
         """Extract quotations line by line from the document."""
         pass
