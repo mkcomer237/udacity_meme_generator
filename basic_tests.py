@@ -4,6 +4,7 @@
 from QuoteEngine import DocxIngestor
 from QuoteEngine import IngestorInterface
 from QuoteEngine import QuoteModel
+from QuoteEngine import CSVIngestor
 import docx
 
 test_quote = QuoteModel(author='Max', body='I love python')
@@ -19,3 +20,5 @@ except(Exception):
     print('Throws an error as expected')
 
 print(DocxIngestor.parse_quotes('_data/DogQuotes/DogQuotesDOCX.docx'))
+
+print(CSVIngestor.parse_quotes('_data/DogQuotes/DogQuotesCSV.csv'))
