@@ -19,7 +19,7 @@ class PDFIngestor(IngestorInterface):
         Each line from the file should be a new quote, and the
         function will split out the author and body.  Uses subprocess
         and the pdftotext service to convert pdf, and then parses
-        the result of the sdtout.  
+        the result of the sdtout.
         """
         if not cls.can_ingest(path):
             raise Exception('incompatible file type')
