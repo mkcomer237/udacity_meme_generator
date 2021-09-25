@@ -7,6 +7,7 @@ from QuoteEngine import QuoteModel
 from QuoteEngine import CSVIngestor
 from QuoteEngine import PDFIngestor
 from QuoteEngine import TXTIngestor
+from QuoteEngine import Ingestor
 import docx
 
 test_quote = QuoteModel(author='Max', body='I love python')
@@ -50,3 +51,10 @@ except(Exception):
     print('Throws an error as expected')
 
 print(TXTIngestor.parse_quotes('_data/DogQuotes/DogQuotesTXT.txt'))
+
+
+print('\nNow testing the universal ingestor:')
+print(Ingestor.parse_quotes('_data/DogQuotes/DogQuotesTXT.txt'))
+print(Ingestor.parse_quotes('_data/DogQuotes/DogQuotesDOCX.docx'))
+print(Ingestor.parse_quotes('_data/DogQuotes/DogQuotesPDF.pdf'))
+print(Ingestor.parse_quotes('_data/DogQuotes/DogQuotesCSV.csv'))
