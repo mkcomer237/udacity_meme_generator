@@ -27,7 +27,6 @@ class CSVIngestor(IngestorInterface):
         # print(doc)
 
         for index, row in doc.iterrows():
-            print('author: ', row['author'])
             quote = QuoteModel(author=row['author'], body=row['body'])
             quotes.append(quote)
 

@@ -6,6 +6,7 @@ from QuoteEngine import IngestorInterface
 from QuoteEngine import QuoteModel
 from QuoteEngine import CSVIngestor
 from QuoteEngine import PDFIngestor
+from QuoteEngine import TXTIngestor
 import docx
 
 test_quote = QuoteModel(author='Max', body='I love python')
@@ -17,11 +18,35 @@ doc = docx.Document('_data/DogQuotes/DogQuotesDOCX.docx')
 
 try:
     print(DocxIngestor.parse_quotes('_data/DogQuotes/DogQuotesCSV.csv'))
+    raise Exception('did not throw an error')
 except(Exception):
     print('Throws an error as expected')
 
 print(DocxIngestor.parse_quotes('_data/DogQuotes/DogQuotesDOCX.docx'))
 
+
+try:
+    print(CSVIngestor.parse_quotes('_data/DogQuotes/DogQuotesDOCX.docx'))
+    raise Exception('did not throw an error')
+except(Exception):
+    print('Throws an error as expected')
+
 print(CSVIngestor.parse_quotes('_data/DogQuotes/DogQuotesCSV.csv'))
 
+
+try:
+    print(PDFIngestor.parse_quotes('_data/DogQuotes/DogQuotesDOCX.docx'))
+    raise Exception('did not throw an error')
+except(Exception):
+    print('Throws an error as expected')
+
 print(PDFIngestor.parse_quotes('_data/DogQuotes/DogQuotesPDF.pdf'))
+
+
+try:
+    print(TXTIngestor.parse_quotes('_data/DogQuotes/DogQuotesDOCX.docx'))
+    raise Exception('did not throw an error')
+except(Exception):
+    print('Throws an error as expected')
+
+print(TXTIngestor.parse_quotes('_data/DogQuotes/DogQuotesTXT.txt'))
