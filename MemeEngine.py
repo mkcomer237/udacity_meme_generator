@@ -18,7 +18,7 @@ class MemeEngine():
         """Initialize with the location to save the memified images."""
         self.out_dir = out_dir
 
-    def make_meme(self, img_path, body, author, width=500):
+    def make_meme(self, img_path, body, author, width=500, dynamic_out=True):
         """Take in an image file and quote and save it as a meme.
 
         Also resize and process the image before adding the
@@ -36,9 +36,12 @@ class MemeEngine():
         draw.text((100, 425), body, font=font, fill='white')
         draw.text((100, 455), '- ' + author, font=font, fill='white')
 
-        # Keep the same filename when outputting
+        # Use a static output file or keep the original filename
         filename, ext = img_path.split('/')[-1].split('.')
-        out_path = self.out_dir + filename.split('.')[0] + '_memed.' + ext
+        if dynamic_out:
+            out_path = self.out_dir + filename.split('.')[0] + '_memed.' + ext
+        else:
+            out_path = self.out_dir + 'memed_img.' + ext
         img.save(out_path)
 
         return out_path

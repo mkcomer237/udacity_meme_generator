@@ -1,4 +1,9 @@
-"""Implement the flask app for the meme generator."""
+"""Implement a flask app for the meme generator.
+
+This will generate a random meme from the stock resources by default,
+and also allow users to generate their own meme from a url and quote
+of their choice. 
+"""
 
 import random
 import os
@@ -28,7 +33,7 @@ def setup():
 
     imgs = []
     for root, dirs, files in os.walk(images_path):
-            imgs = [os.path.join(root, name) for name in files]
+        imgs = [os.path.join(root, name) for name in files]
 
     return quotes, imgs
 
@@ -39,14 +44,10 @@ quotes, imgs = setup()
 @app.route('/')
 def meme_rand():
     """Generate a random meme."""
-    # @TODO:
-    # Use the random python standard library class to:
-    # 1. select a random image from imgs array
-    # 2. select a random quote from the quotes array
     print('Imgs: ', imgs, '\n')
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    path = meme.make_meme(img, quote.body, quote.author)
+    path = meme.make_meme(img, quote.body, quote.author, dynamic_out=False)
     print('Path: ', path, '\n')
     return render_template('meme.html', path=path)
 
