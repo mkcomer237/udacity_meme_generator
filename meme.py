@@ -13,8 +13,6 @@ def generate_meme(path=None, body=None, author=None):
     img = None
     quote = None
 
-    print('Body: ', body)
-
     if path is None:
         images = "./_data/photos/dog/"
         imgs = []

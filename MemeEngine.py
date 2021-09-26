@@ -24,7 +24,6 @@ class MemeEngine():
         Also resize and process the image before adding the
         meme text.
         """
-        print('Body: ', body)
         img = Image.open(img_path)
 
         # Crop the images
