@@ -3,6 +3,8 @@
 import os
 import random
 from QuoteEngine import Ingestor
+from MemeEngine import MemeEngine
+from QuoteEngine import QuoteModel
 
 
 def generate_meme(path=None, body=None, author=None):
@@ -18,7 +20,7 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path[0]
+        img = path
 
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
@@ -27,7 +29,7 @@ def generate_meme(path=None, body=None, author=None):
                        './_data/DogQuotes/DogQuotesCSV.csv']
         quotes = []
         for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
+            quotes.extend(Ingestor.parse_quotes(f))
 
         quote = random.choice(quotes)
     else:
@@ -35,7 +37,7 @@ def generate_meme(path=None, body=None, author=None):
             raise Exception('Author Required if Body is Used')
         quote = QuoteModel(body, author)
 
-    meme = MemeEngine('./tmp')
+    meme = MemeEngine('./memes/')
     path = meme.make_meme(img, quote.body, quote.author)
     return path
 
@@ -46,4 +48,5 @@ if __name__ == "__main__":
     # body - quote body to add to the image
     # author - quote author to add to the image
     args = None
-    print(generate_meme(args.path, args.body, args.author))
+    print(generate_meme('_data/photos/dog/xander_1.jpg', None, None))
+    # print(generate_meme(args.path, args.body, args.author))
