@@ -1,3 +1,6 @@
+"""Take and image and reformat, add a quote, and save."""
+
+
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -8,7 +11,8 @@ class MemeEngine():
     the meme. Add a bunch of methods to do this?
 
     Ultimately we need to return a file path with the resized and text
-    appended meme."""
+    appended meme.
+    """
 
     def __init__(self, out_dir):
         """Initialize with the location to save the memified images."""
