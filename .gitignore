@@ -1,3 +1,5 @@
 /venv
 *.pyc
 .DS_Store
+/static/url_image.jpg
+/static/url_image_memed.jpg
