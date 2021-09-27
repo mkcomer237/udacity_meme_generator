@@ -1,6 +1,7 @@
 """Manual testing for the meme engine."""
 
-
+import sys
+sys.path.append('/Users/maxcomer/Dropbox/coding_and_cs/intermediate_python/meme_generator')  # noqa
 from MemeEngine import MemeEngine
 
 

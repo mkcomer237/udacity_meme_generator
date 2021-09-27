@@ -1,6 +1,6 @@
 """Script to run and test out classes as they are built out."""
-
-
+import sys
+sys.path.append('/Users/maxcomer/Dropbox/coding_and_cs/intermediate_python/meme_generator')  # noqa
 from QuoteEngine import DocxIngestor
 from QuoteEngine import IngestorInterface
 from QuoteEngine import QuoteModel
