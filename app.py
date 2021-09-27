@@ -4,7 +4,7 @@ This will generate a random meme from the stock resources by default,
 and also allow users to generate their own meme from a url and quote
 of their choice.
 
-to start the server: 
+to start the server:
 export FLASK_APP=app.py
 flask run --host 0.0.0.0 --port 3000 --reload
 """

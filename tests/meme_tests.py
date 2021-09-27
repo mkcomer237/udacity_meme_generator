@@ -1,7 +1,7 @@
 """Manual testing for the meme engine."""
 
 
-from MemeEngine.MemeEngine import MemeEngine
+from MemeEngine import MemeEngine
 
 
 # Specify the output file when instantiating the object
