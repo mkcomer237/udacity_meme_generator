@@ -26,6 +26,9 @@ class MemeEngine():
         """
         img = Image.open(img_path)
 
+        if img.size[0] < 500:
+            raise Exception('Source image is too small')
+
         # Crop the images
         ratio = width/float(img.size[0])
         height = int(ratio*float(img.size[1]))
