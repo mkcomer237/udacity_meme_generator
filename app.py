@@ -2,7 +2,11 @@
 
 This will generate a random meme from the stock resources by default,
 and also allow users to generate their own meme from a url and quote
-of their choice. 
+of their choice.
+
+to start the server: 
+export FLASK_APP=app.py
+flask run --host 0.0.0.0 --port 3000 --reload
 """
 
 import random
@@ -11,6 +15,7 @@ import requests
 from flask import Flask, render_template, abort, request
 from MemeEngine import MemeEngine
 from QuoteEngine import Ingestor
+from QuoteEngine import QuoteModel
 
 
 app = Flask(__name__)
@@ -44,11 +49,9 @@ quotes, imgs = setup()
 @app.route('/')
 def meme_rand():
     """Generate a random meme."""
-    print('Imgs: ', imgs, '\n')
     img = random.choice(imgs)
     quote = random.choice(quotes)
     path = meme.make_meme(img, quote.body, quote.author, dynamic_out=False)
-    print('Path: ', path, '\n')
     return render_template('meme.html', path=path)
 
 
@@ -67,8 +70,16 @@ def meme_post():
     # 2. Use the meme object to generate a meme using this temp
     #    file and the body and author form paramaters.
     # 3. Remove the temporary saved image.
+    print(request.form['body'])
+    url = 'https://lh3.googleusercontent.com/pw/AM-JKLUQD6yKx4-8wCLJXk8PuWn-GRWJJEKROZJuAV08OOYMfG-8kjYpni2R2SJj1s9JgpYWp7uyOf2oSesLzIxmsbKsfs8iOHGDXjwnp6IlLhltvHDFMoWXFhntq23rYpNhe3oO4m_8us4Wo4Qnd-IBT9WglA=w1992-h1328-no?authuser=0'
+    url_img = requests.get(url)
+    save_path = 'static/url_image.jpg'
 
-    path = None
+    with open(save_path, 'wb') as f:
+        f.write(url_img.content)
+
+    quote = QuoteModel(request.form['author'], request.form['body'])
+    path = meme.make_meme(save_path, quote.body, quote.author)
 
     return render_template('meme.html', path=path)
 
