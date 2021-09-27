@@ -32,9 +32,15 @@ class MemeEngine():
         img = img.resize((width, height), Image.NEAREST)
 
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype('./fonts/Papyrus.ttc', size=28)
-        draw.text((100, 425), body, font=font, fill='white')
-        draw.text((100, 455), '- ' + author, font=font, fill='white')
+        font = ImageFont.truetype('./fonts/Papyrus.ttc', size=30)
+
+        # Make the text location dynamic based on the (resized) image size
+        h_loc = img.size[0] - 350
+        body_vloc = img.size[1] - 75
+        author_vloc = img.size[1] - 45
+
+        draw.text((h_loc, body_vloc), body, font=font, fill='white')
+        draw.text((h_loc, author_vloc), '- ' + author, font=font, fill='white')
 
         # Use a static output file or keep the original filename
         filename, ext = img_path.split('/')[-1].split('.')
