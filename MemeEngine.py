@@ -35,7 +35,7 @@ class MemeEngine():
         img = img.resize((width, height), Image.NEAREST)
 
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype('./fonts/Papyrus.ttc', size=30)
+        font = ImageFont.truetype('./_data/fonts/Papyrus.ttc', size=30)
 
         # Make the text location dynamic based on the (resized) image size
         h_loc = img.size[0] - 350
