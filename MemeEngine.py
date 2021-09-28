@@ -2,6 +2,7 @@
 
 
 from PIL import Image, ImageDraw, ImageFont
+from pathlib import Path
 from Exceptions import InvalidImageSize, InvalidTextInput
 
 
@@ -52,7 +53,7 @@ class MemeEngine():
         draw.text((h_loc, author_vloc), '- ' + author, font=font, fill='white')
 
         # Use a static output file or keep the original filename
-        filename, ext = img_path.split('/')[-1].split('.')
+        filename, ext = (Path(img_path).stem, Path(img_path).suffix)
         if dynamic_out:
             out_path = self.out_dir + filename.split('.')[0] + '_memed.' + ext
         else:
