@@ -3,3 +3,5 @@
 .DS_Store
 _data/.DS_Store
 _data/photos/.DS_Store
+memes/*
+static/*

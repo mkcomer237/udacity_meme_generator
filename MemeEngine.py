@@ -17,8 +17,12 @@ class MemeEngine():
     """
 
     def __init__(self, out_dir):
-        """Initialize with the location to save the memified images."""
+        """Initialize with the location to save the memified images.
+        
+        Also create the directory to store them if it doesn't already exist.
+        """
         self.out_dir = out_dir
+        Path(out_dir).mkdir(exist_ok=True)
 
     def make_meme(self, img_path, body, author, width=500, dynamic_out=True):
         """Take in an image file and quote and save it as a meme.
@@ -53,11 +57,12 @@ class MemeEngine():
         draw.text((h_loc, author_vloc), '- ' + author, font=font, fill='white')
 
         # Use a static output file or keep the original filename
-        filename, ext = (Path(img_path).stem, Path(img_path).suffix)
+        file_path = Path(img_path)
+        filename, ext = (file_path.stem, file_path.suffix)
         if dynamic_out:
-            out_path = self.out_dir + filename.split('.')[0] + '_memed.' + ext
+            out_path = self.out_dir + filename.split('.')[0] + '_memed' + ext
         else:
-            out_path = self.out_dir + 'memed_img.' + ext
+            out_path = self.out_dir + 'memed_img' + ext
         img.save(out_path)
 
         return out_path
