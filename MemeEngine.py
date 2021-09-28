@@ -2,6 +2,7 @@
 
 
 from PIL import Image, ImageDraw, ImageFont
+from Exceptions import InvalidImageSize, InvalidTextInput
 
 
 class MemeEngine():
@@ -26,8 +27,13 @@ class MemeEngine():
         """
         img = Image.open(img_path)
 
+        # Exceptions for issues with the image or soure file
         if img.size[0] < 500:
-            raise Exception('Source image is too small')
+            raise InvalidImageSize('The source image width '
+                                   'must be at least 500 pixels')
+
+        if len(body) > 40:
+            raise InvalidTextInput('The quote is too long')
 
         # Crop the images
         ratio = width/float(img.size[0])

@@ -8,6 +8,7 @@ from .PDFIngestor import PDFIngestor
 from .CSVIngestor import CSVIngestor
 from .QuoteModel import QuoteModel
 from typing import List
+from Exceptions import InvalidFileFormat
 
 
 class Ingestor(IngestorInterface):
@@ -26,7 +27,7 @@ class Ingestor(IngestorInterface):
         Try each allowable extension type using the appropriate class.
         """
         if not cls.can_ingest(path):
-            raise Exception('incompatible file type')
+            raise InvalidFileFormat('File must be pdf, docx, csv, or txt')
 
         ingestors = [TXTIngestor, DocxIngestor, PDFIngestor, CSVIngestor]
         for ingestor in ingestors:
