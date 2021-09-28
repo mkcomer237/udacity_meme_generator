@@ -29,7 +29,10 @@ class PDFIngestor(IngestorInterface):
         doc = p.stdout.decode("utf-8")
 
         for row in doc.split(' "'):
-            body, author = row.split('-')
+            try:
+                body, author = row.split('-')
+            except(ValueError):
+                raise Exception(f'ValueError. row is: {row} and the path is {path}')
             body = body.replace('"', '')
             quote = QuoteModel(author=author.strip(), body=body.strip())
             quotes.append(quote)
